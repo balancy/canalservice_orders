@@ -12,3 +12,5 @@ class OrderAdmin(admin.ModelAdmin):
         'rub_price',
         'delivery_date',
     )
+
+    ordering = ('id',)

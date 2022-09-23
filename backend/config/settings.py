@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
+
 from environs import Env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'orders.apps.OrdersConfig',
+    'order.apps.OrderConfig',
 ]
 
 MIDDLEWARE = [
@@ -98,3 +99,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# orders
+
+ORDERS_GOOGLESHEET_ID = env.str(
+    'ORDERS_GOOGLESHEET_ID',
+    '1AkbjncKtr9_xW3mFcpxX9E1FDoFyn0sAbomPFIUxmDo',
+)
+ORDERS_GOOGLESHEET_RANGE = 'A:D'
