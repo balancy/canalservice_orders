@@ -49,6 +49,7 @@ def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
 
 
 class Command(BaseCommand):
+    # TODO: more intelligent way to refresh db?
     def handle(self, *args, **kwargs):
         spreadsheet_id = settings.ORDERS_GOOGLESHEET_ID
         spreadsheet_range = settings.ORDERS_GOOGLESHEET_RANGE

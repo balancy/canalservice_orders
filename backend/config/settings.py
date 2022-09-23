@@ -26,7 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'order.apps.OrderConfig',
+    'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
