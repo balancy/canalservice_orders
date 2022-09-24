@@ -30,8 +30,6 @@ def fetch_usd_rub_conversion_rate() -> float:
 
 
 def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
-    Order.objects.all().delete()
-
     order_records = orders.to_dict('records')
     order_instances = [
         Order(
@@ -45,6 +43,7 @@ def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
         )
         for record in order_records
     ]
+    Order.objects.all().delete()
     Order.objects.bulk_create(order_instances)
 
 

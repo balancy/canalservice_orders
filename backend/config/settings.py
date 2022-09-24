@@ -1,9 +1,12 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 
 from environs import Env
+
+import config.tasks
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -65,8 +68,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.str('SQL_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': env.str('POSTGRES_DB', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env.str('POSTGRES_DB', 'orders'),
         'USER': env.str('POSTGRES_USER', 'admin'),
         'PASSWORD': env.str('POSTGRES_PASSWORD', 'password'),
         'HOST': env.str('SQL_HOST', 'localhost'),
@@ -116,3 +119,15 @@ ORDERS_GOOGLESHEET_ID = env.str(
     '1AkbjncKtr9_xW3mFcpxX9E1FDoFyn0sAbomPFIUxmDo',
 )
 ORDERS_GOOGLESHEET_RANGE = 'A:D'
+
+# celery
+
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+
+CELERY_BEAT_SCHEDULE = {
+    'refresh_orders': {
+        'task': 'config.tasks.refresh_orders_in_db',
+        'schedule': timedelta(seconds=10),
+    },
+}
