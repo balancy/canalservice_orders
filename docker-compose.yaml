@@ -24,7 +24,7 @@ services:
     build:
       context: backend
     volumes:
-      - ./backend:/app
+      - ./backend:/app:cached
     environment:
       SECRET_KEY: ${SECRET_KEY-replace_me}
       SQL_HOST: ${SQL_HOST-db}
@@ -41,7 +41,7 @@ services:
       context: backend
     command: celery -A config worker -l info
     volumes:
-      - ./backend:/app
+      - ./backend:/app:cached
     environment:
       SECRET_KEY: ${SECRET_KEY-replace_me}
       SQL_HOST: ${SQL_HOST-db}
@@ -55,7 +55,7 @@ services:
       context: backend
     command: celery -A config beat -l info
     volumes:
-      - ./backend:/app
+      - ./backend:/app:cached
     environment:
       SECRET_KEY: ${SECRET_KEY-replace_me}
       SQL_HOST: ${SQL_HOST-db}
