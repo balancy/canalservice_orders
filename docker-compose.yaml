@@ -71,6 +71,8 @@ services:
     volumes:
       - './frontend:/app:cached'
       - './frontend/node_modules:/app/node_modules:cached'
+    environment:
+      REACT_APP_BACKEND_HOST: ${REACT_APP_BACKEND_HOST-http://localhost}
     ports:
       - 3000:3000
     depends_on:
