@@ -25,9 +25,15 @@
     color: #61dafb;
 }
 
-.Half-width {
+.App-column {
     width: 50%;
     display: inline-block;
+    vertical-align: top;
+}
+
+.Total-table {
+    width: 200px;
+    margin: auto;
 }
 
 table,
