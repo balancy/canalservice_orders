@@ -46,6 +46,7 @@ services:
     environment:
       SECRET_KEY: ${SECRET_KEY-replace_me}
       SQL_HOST: ${SQL_HOST-db}
+      ORDERS_GOOGLESHEET_ID: ${ORDERS_GOOGLESHEET_ID-1AkbjncKtr9_xW3mFcpxX9E1FDoFyn0sAbomPFIUxmDo}
     depends_on:
       - redis
       - django
@@ -60,6 +61,7 @@ services:
     environment:
       SECRET_KEY: ${SECRET_KEY-replace_me}
       SQL_HOST: ${SQL_HOST-db}
+      ORDERS_GOOGLESHEET_ID: ${ORDERS_GOOGLESHEET_ID-1AkbjncKtr9_xW3mFcpxX9E1FDoFyn0sAbomPFIUxmDo}
     depends_on:
       - redis
       - django
