@@ -67,7 +67,6 @@ services:
     container_name: frontend
     build:
       context: frontend
-      dockerfile: Dockerfile
     volumes:
       - './frontend:/app:cached'
       - './frontend/node_modules:/app/node_modules:cached'
@@ -75,6 +74,17 @@ services:
       REACT_APP_BACKEND_HOST: ${REACT_APP_BACKEND_HOST-http://localhost}
     ports:
       - 3000:3000
+    depends_on:
+      - django
+
+  tg-bot:
+    container_name: telegram-bot
+    build:
+      context: bot
+    volumes:
+      - ./bot:/bot:cached
+    env_file:
+      - ./bot/.env
     depends_on:
       - django
 
