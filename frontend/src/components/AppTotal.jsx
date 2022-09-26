@@ -8,7 +8,7 @@ const AppTotal = (props) => {
     useEffect(() => {
         let rub_prices = props.getColumnData(props.data, 'rub_price')
         setTotal(Math.round(sum(rub_prices)))
-    }, [props.data])
+    }, [props])
 
     return (
         <div className="Total-table">
