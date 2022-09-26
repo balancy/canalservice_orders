@@ -5,8 +5,9 @@ import AppTotal from "./AppTotal";
 
 const AppContent = (props) => {
     const [data, setData] = useState([]);
-    const intervalDuration = 10_000;
+    const intervalDuration = process.env.REACT_APP_REFRESH_INTERVAL_DURATION * 1000;
 
+    // function that makes a vertical data slice. For example, the column 'delivery_date'.
     const getColumnData = (data, key) => data.map(row => row[key]);
 
     const fetchData = async () => {
@@ -16,6 +17,7 @@ const AppContent = (props) => {
     }
 
     useEffect(() => {
+        // fetch data every 'intervalDuration' miliseconds.
         setInterval(function refetch() {
             fetchData();
             return refetch;

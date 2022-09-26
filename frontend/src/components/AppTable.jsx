@@ -12,8 +12,8 @@ const AppData = (props) => (
         {props.data.length > 0 && (
             <tbody>
                 {props.data.map(order => (
-                    <tr key={order.id}>
-                        <td>{order.id}</td>
+                    <tr key={order.gsh_id}>
+                        <td>{order.gsh_id}</td>
                         <td>{order.number}</td>
                         <td>{order.usd_price}</td>
                         <td>{order.rub_price}</td>

@@ -13,6 +13,16 @@ def fetch_orders(
     spreadsheet_id: str,
     spreadsheet_range: str,
 ) -> pandas.DataFrame:
+    """Fetch orders data from googlesheet.
+
+    Args:
+        spreadsheet_id (str): id of googlesheet
+        spreadsheet_range (str): cells range to fetch data from
+
+    Returns:
+        pandas.DataFrame: fetched data as pandas dataframe
+    """
+
     googlesheet_url = (
         f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}'
         f'/gviz/tq?tqx=out:csv&range={spreadsheet_range}'
@@ -23,6 +33,11 @@ def fetch_orders(
 
 
 def fetch_usd_rub_conversion_rate() -> float:
+    """Fetch current usd to ruble conversion rate.
+
+    Returns:
+        float: conversion rate
+    """
     response = requests.get('https://www.cbr-xml-daily.ru/daily_json.js')
     response.raise_for_status()
 
@@ -30,6 +45,13 @@ def fetch_usd_rub_conversion_rate() -> float:
 
 
 def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
+    """Refill order table with new fetched data.
+
+    Args:
+        orders (pandas.DataFrame): new fetched data
+        usd_rub_rate (float): ust to ruble conversion rate
+    """
+
     order_records = orders.to_dict('records')
     order_instances = [
         Order(
@@ -48,7 +70,6 @@ def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
 
 
 class Command(BaseCommand):
-    # TODO: more intelligent way to refresh db?
     def handle(self, *args, **kwargs):
         spreadsheet_id = settings.ORDERS_GOOGLESHEET_ID
         spreadsheet_range = settings.ORDERS_GOOGLESHEET_RANGE

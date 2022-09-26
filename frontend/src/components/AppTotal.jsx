@@ -5,6 +5,7 @@ const AppTotal = (props) => {
 
     const sum = (arr) => arr.reduce((partialSum, a) => partialSum + a, 0);
 
+    // summarize all rub prices for total amount
     useEffect(() => {
         let rub_prices = props.getColumnData(props.data, 'rub_price')
         setTotal(Math.round(sum(rub_prices)))

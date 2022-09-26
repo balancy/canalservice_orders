@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
 }
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
@@ -117,10 +118,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # orders
 
-ORDERS_GOOGLESHEET_ID = env.str(
-    'ORDERS_GOOGLESHEET_ID',
-    '1AkbjncKtr9_xW3mFcpxX9E1FDoFyn0sAbomPFIUxmDo',
-)
+ORDERS_GOOGLESHEET_ID = env.str('ORDERS_GOOGLESHEET_ID')
 ORDERS_GOOGLESHEET_RANGE = 'A:D'
 
 # celery
@@ -131,6 +129,6 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379'
 CELERY_BEAT_SCHEDULE = {
     'refresh_orders': {
         'task': 'config.tasks.refresh_orders_in_db',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(seconds=env.int('DB_REFRESH_INTERVAL', 10)),
     },
 }

@@ -5,6 +5,7 @@ const AppChart = (props) => {
     const [options, setOptions] = useState({});
     const [series, setSeries] = useState([]);
 
+    // recalculate points for the chart when data in props chaned
     useEffect(() => {
         setOptions({
             chart: {
@@ -37,52 +38,5 @@ const AppChart = (props) => {
         </div>
     );
 }
-
-// class AppChart extends Component {
-//     constructor(props) {
-//         super(props);
-
-
-//         this.state = {
-//             options: {
-//                 chart: {
-//                     id: "basic-bar"
-//                 },
-//                 xaxis: {
-//                     categories: props.getColumnData(props.data, 'delivery_date')
-//                 }
-//             },
-//             series: [
-//                 {
-//                     name: "price",
-//                     data: props.getColumnData(props.data, 'rub_price')
-//                 }
-//             ]
-//         };
-//     }
-
-//     componentDidUpdate(prevProps) {
-//         if (this.props.data !== prevProps.data) {
-//             console.log('changed');
-//         }
-//     };
-
-//     render() {
-//         return (
-//             <div className="app">
-//                 <div className="row">
-//                     <div className="mixed-chart">
-//                         <Chart
-//                             options={this.state.options}
-//                             series={this.state.series}
-//                             type="line"
-//                             width="100%"
-//                         />
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
 
 export default AppChart;
