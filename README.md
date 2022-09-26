@@ -1,4 +1,5 @@
-# TODO
+# Canalservice test assignment web-app
 
-? docker-compose.prod.yaml
-? errors in google sheet
+```sh
+touch bot/.env
+```

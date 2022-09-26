@@ -83,6 +83,8 @@ services:
       context: bot
     volumes:
       - ./bot:/bot:cached
+    environment:
+      BACKEND_HOST: ${BACKEND_HOST-http://django}
     env_file:
       - ./bot/.env
     depends_on:
