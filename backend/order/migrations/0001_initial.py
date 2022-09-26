@@ -14,25 +14,30 @@ class Migration(migrations.Migration):
             name="Order",
             fields=[
                 (
-                    "id",
-                    models.PositiveIntegerField(
-                        primary_key=True, serialize=False, verbose_name="№"
-                    ),
+                    "gsh_id",
+                    models.PositiveIntegerField(verbose_name="№"),
                 ),
                 ("number", models.IntegerField(verbose_name="заказ №")),
                 (
                     "usd_price",
                     models.DecimalField(
-                        decimal_places=2, max_digits=8, verbose_name="стоимость, $"
+                        decimal_places=2,
+                        max_digits=8,
+                        verbose_name="стоимость, $",
                     ),
                 ),
                 (
                     "rub_price",
                     models.DecimalField(
-                        decimal_places=2, max_digits=10, verbose_name="стоимость, ₽"
+                        decimal_places=2,
+                        max_digits=10,
+                        verbose_name="стоимость, ₽",
                     ),
                 ),
-                ("delivery_date", models.DateField(verbose_name="срок доставки")),
+                (
+                    "delivery_date",
+                    models.DateField(verbose_name="срок доставки"),
+                ),
             ],
             options={
                 "verbose_name": "заказ",

@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Order(models.Model):
-    id = models.PositiveIntegerField('№', primary_key=True, editable=True)
+    gsh_id = models.PositiveIntegerField('№', blank=False, null=False)
     number = models.IntegerField('заказ №', blank=False, null=False)
     usd_price = models.DecimalField(
         'стоимость, $',

@@ -33,7 +33,7 @@ def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
     order_records = orders.to_dict('records')
     order_instances = [
         Order(
-            id=record['№'],
+            gsh_id=record['№'],
             number=record['заказ №'],
             usd_price=record['стоимость,$'],
             rub_price=record['стоимость,$'] * usd_rub_rate,

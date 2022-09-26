@@ -7,10 +7,11 @@ from .models import Order
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
         'id',
+        'gsh_id',
         'number',
         'usd_price',
         'rub_price',
         'delivery_date',
     )
 
-    ordering = ('id',)
+    ordering = ('gsh_id',)
