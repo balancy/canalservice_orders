@@ -22,17 +22,19 @@ Frontend овтечает за отображение в виде SPA:
 
 ## Запуск dev-версии приложения
 
-1. Клонируйте репозиторий и перейдите в него
+У вас в системе должны быть установлены docker и docker-compose.
+
+#### Клонируйте репозиторий и перейдите в него
 
 ```sh
-https://github.com/balancy/canalservice_orders.git
+git clone https://github.com/balancy/canalservice_orders.git
 ```
 
 ```sh
 cd canalservice_orders
 ```
 
-2. Задайте переменные окружения
+#### Задайте переменные окружения
 
 Создайте файл `.env` в папке bot:
 
@@ -40,13 +42,13 @@ cd canalservice_orders
 touch bot/.env
 ```
 
-Пропишите в него телеграм токен, который можно получить у [@BotFather](@BotFather) в формате:
+Откройте `bot/.env` файл любым редактором и пропишите телеграм токен, который можно получить у [t.me/BotFather](t.me/BotFather), в формате:
 
 ```sh
 TELEGRAM_TOKEN=ваш_токен
 ```
 
-3. Запуск приложения
+#### Запуск приложения
 ```
 docker-compose up -d --build
 ```
@@ -59,6 +61,18 @@ SPA будет доступно по адресу
 
 [http://localhost:3000/](http://localhost:3000/)
 
+Бот будет доступен по адресу, заданному Вами через [t.me/BotFather](t.me/BotFather)
+Начинайте взаимодействие с ним через команду '/start'.
+
+#### Создайте суперпользователя для django admin
+
+```
+docker-compose exec django python manage.py createsuperuser
+```
+
+Админка django будет доступна по адресу
+
+[http://localhost:8080/admin/](http://localhost:8080/admin/)
 
 ### Другие переменные окружения
 Задавать эти переменные для локальной развертки не нужно.

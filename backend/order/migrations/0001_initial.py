@@ -14,6 +14,15 @@ class Migration(migrations.Migration):
             name="Order",
             fields=[
                 (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
                     "gsh_id",
                     models.PositiveIntegerField(verbose_name="№"),
                 ),
