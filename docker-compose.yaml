@@ -28,6 +28,7 @@ services:
     environment:
       SQL_HOST: ${SQL_HOST-db}
       DB_REFRESH_INTERVAL: ${DB_REFRESH_INTERVAL-10}
+      ORDERS_GOOGLESHEET_ID: ${ORDERS_GOOGLESHEET_ID-1AkbjncKtr9_xW3mFcpxX9E1FDoFyn0sAbomPFIUxmDo}
     entrypoint:
       - ./entrypoint.sh
     ports:
