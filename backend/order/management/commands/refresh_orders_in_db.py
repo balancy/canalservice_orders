@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand
 
 import pandas
 import requests
+from numpy import nan
 
 from order.models import Order
 
@@ -53,6 +54,11 @@ def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
     """
 
     order_records = orders.to_dict('records')
+
+    # do not take into account orders with empty cells
+    filled_records = [
+        record for record in order_records if nan not in record.values()
+    ]
     order_instances = [
         Order(
             gsh_id=record['№'],
@@ -63,7 +69,7 @@ def refresh_db(orders: pandas.DataFrame, usd_rub_rate: float) -> None:
                 record['срок поставки'], '%d.%m.%Y'
             ),
         )
-        for record in order_records
+        for record in filled_records
     ]
     Order.objects.all().delete()
     Order.objects.bulk_create(order_instances)
